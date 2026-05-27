@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人导航</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        :root {
+            --bg-color: #f0f4f9;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --sub-text: #718096;
+            --primary: #4080ff;
+            --hover-bg: #4080ff;
+            --hover-text: #fff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .dark {
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+            --sub-text: #a0aec0;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        body {
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-size: 30px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .desc {
+            color: var(--sub-text);
+            margin-top: 6px;
+        }
+
+        #themeBtn {
+            border: none;
+            background: var(--card-bg);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 18px;
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .group-title {
+            font-size: 16px;
+            color: var(--sub-text);
+            margin: 30px 0 15px;
+            padding-left: 8px;
+        }
+
+        /* 一级菜单 */
+        .menu-wrap {
+            margin-bottom: 12px;
+        }
+
+        .menu-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 18px 22px;
+            border-radius: 14px;
+            font-size: 16px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.28s ease;
+        }
+
+        .menu-main:hover {
+            background: var(--hover-bg);
+            color: var(--hover-text);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(64, 128, 255, 0.25);
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ========== 超级慢动作 柔和动画 ========== */
+        .sub-menu {
+            padding-left: 20px;
+            margin-top: 4px;
+            
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: 
+                max-height 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+                opacity 0.65s ease,
+                transform 0.7s ease,
+                padding 0.6s ease;
+        }
+
+        /* 展开状态 */
+        .menu-wrap.active .sub-menu {
+            max-height: 500px;
+            opacity: 1;
+            transform: translateY(0);
+            padding-bottom: 6px;
+        }
+
+        /* 箭头旋转也放慢 */
+        .fa-chevron-down {
+            transition: transform 0.7s cubic-bezier(0.33,1,0.68,1);
+        }
+        .menu-wrap.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* 二级菜单项 */
+        .sub-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 14px 22px;
+            font-size: 15px;
+            border-radius: 10px;
+            margin: 6px 0;
+            transition: all 0.22s ease;
+        }
+
+        .sub-item:hover {
+            background: rgba(64, 128, 255, 0.12);
+            padding-left: 26px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="main-title">个人导航</h1>
+                <p class="desc">常用网站快速访问</p>
+            </div>
+            <button id="themeBtn"><i class="fa-solid fa-moon"></i></button>
+        </div>
+
+        <!-- 综合网站 -->
+        <h3 class="group-title">综合网站</h3>
+        <div class="menu-wrap">
+            <div class="menu-main">
+                <div class="menu-left">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <span>搜索平台</span>
+                </div>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="sub-menu">
+                <a href="https://www.baidu.com" class="sub-item" target="_blank">
+                    <i class="fa-solid fa-b icon"></i>
+                    <span>百度</span>
+                </a>
+                <a href="https://www.sogou.com" class="sub-item" target="_blank">
+                    <i class="fa-solid fa-s icon"></i>
+                    <span>搜狗搜索</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-wrap">
+            <div class="menu-main">
+                <div class="menu-left">
+                    <i class="fa-solid fa-tv icon"></i>
+                    <span>视频平台</span>
+                </div>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="sub-menu">
+                <a href="https://www.bilibili.com" class="sub-item" target="_blank">
+                    <i class="fa-brands fa-bilibili icon"></i>
+                    <span>哔哩哔哩</span>
+                </a>
+                <a href="https://v.qq.com" class="sub-item" target="_blank">
+                    <i class="fa-solid fa-video icon"></i>
+                    <span>腾讯视频</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 工具 & 开发 -->
+        <h3 class="group-title">工具 & 开发</h3>
+        <a href="https://github.com" class="menu-main" target="_blank">
+            <div class="menu-left">
+                <i class="fa-brands fa-github icon"></i>
+                <span>GitHub</span>
+            </div>
+        </a>
+
+        <!-- 资讯 & 邮箱 -->
+        <h3 class="group-title">资讯 & 邮箱</h3>
+        <a href="https://www.163.com" class="menu-main" target="_blank">
+            <div class="menu-left">
+                <i class="fa-solid fa-envelope icon"></i>
+                <span>网易邮箱</span>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // 深浅色切换
+        const themeBtn = document.getElementById('themeBtn');
+        const icon = themeBtn.querySelector('i');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            icon.className = document.body.classList.contains('dark') 
+                ? 'fa-solid fa-sun' 
+                : 'fa-solid fa-moon';
+        });
+
+        // 二级菜单展开/收起
+        const menuWraps = document.querySelectorAll('.menu-wrap');
+        menuWraps.forEach(wrap => {
+            const main = wrap.querySelector('.menu-main');
+            main.addEventListener('click', () => {
+                wrap.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
