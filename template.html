@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏资源导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        :root {
+            --bg-color: #f0f4f9;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --hover-bg: #4080ff;
+            --hover-text: #fff;
+            --sub-bg: #fafbfc;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: var(--bg-color);
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .menu-wrap {
+            background: var(--card-bg);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .menu-main {
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .menu-main:hover {
+            background: var(--hover-bg);
+            color: var(--hover-text);
+        }
+
+        .arrow {
+            display: inline-block;
+            transform: rotate(0deg);
+        }
+
+        .menu-wrap.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            background: var(--sub-bg);
+            padding-left: 20px;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-wrap.active .sub-menu {
+            max-height: 900px;
+        }
+
+        .sub-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            cursor: pointer;
+            font-size: 15px;
+            color: var(--text-color);
+        }
+
+        .sub-item:hover {
+            background: rgba(64, 128, 255, 0.12);
+            padding-left: 26px;
+        }
+
+        .file-item {
+            padding: 12px 40px;
+            font-size: 14px;
+            color: #444;
+            cursor: pointer;
+        }
+
+        .file-item:hover {
+            background: rgba(64, 128, 255, 0.12);
+        }
+
+        .icon {
+            font-size: 18px;
+            width: 22px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🎮 游戏资源导航</h1>
+
+        <div class="menu-wrap">
+            <div class="menu-main">
+                <span><span class="icon">📦</span>Minecraft</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-item"><span class="icon">📁</span>整合包</div>
+                <!-- AUTO_mc-modpack -->
+                <div class="sub-item"><span class="icon">🧩</span>Mod</div>
+                <!-- AUTO_mc-mod -->
+                <div class="sub-item"><span class="icon">✨</span>光影包</div>
+                <!-- AUTO_mc-shaders -->
+                <div class="sub-item"><span class="icon">🖼️</span>材质包</div>
+                <!-- AUTO_mc-resource -->
+                <div class="sub-item"><span class="icon">🎯</span>PvP 材质包</div>
+                <!-- AUTO_mc-pvp -->
+            </div>
+        </div>
+
+        <div class="menu-wrap">
+            <div class="menu-main">
+                <span><span class="icon">🌍</span>Terraria</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-item"><span class="icon">📖</span>维基</div>
+                <!-- AUTO_tr-wiki -->
+                <div class="sub-item"><span class="icon">🧪</span>模组</div>
+                <!-- AUTO_tr-mods -->
+            </div>
+        </div>
+
+        <div class="menu-wrap">
+            <div class="menu-main">
+                <span><span class="icon">🔗</span>联机</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-item" onclick="copyMC()"><span class="icon">📦</span>Minecraft</div>
+                <!-- AUTO_multi-mc -->
+                <div class="sub-item" onclick="copyTR()"><span class="icon">🌍</span>Terraria</div>
+                <!-- AUTO_multi-tr -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.menu-main').forEach(item => {
+            item.addEventListener('click', () => {
+                const wrap = item.closest('.menu-wrap');
+                wrap.classList.toggle('active');
+            });
+        });
+
+        function copyMC() {
+            const text = "frp-hat.com:43687";
+            navigator.clipboard.writeText(text).then(()=>alert("✅ 已复制："+text));
+        }
+        function copyTR() {
+            const text = "frp-hat.com:41825";
+            navigator.clipboard.writeText(text).then(()=>alert("✅ 已复制："+text));
+        }
+    </script>
+</body>
+</html>
