@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>游戏资源导航 | Game Resources</title>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -30,7 +29,7 @@
             --card-bg: #2d3748;
             --text-color: #e2e8f0;
             --sub-text: #a0aec0;
-            --shadow: 0 2px 10px rgba(0, 0, 0.25);
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
         }
 
         body {
@@ -257,7 +256,7 @@
                         <span class="en">CN</span>
                     </span>
                 </button>
-                <button id="themeBtn"><i class="fa-solid fa-moon"></i></button>
+                <button id="themeBtn">🌙</button>
             </div>
         </div>
 
@@ -265,45 +264,45 @@
         <div class="menu-wrap">
             <div class="menu-main">
                 <div class="menu-left">
-                    <i class="fa-solid fa-cube icon"></i>
+                    <span class="icon">📦</span>
                     <span class="lang-text">
                         <span class="zh">Minecraft</span>
                         <span class="en">Minecraft</span>
                     </span>
                 </div>
-                <i class="fa-solid fa-chevron-down"></i>
+                <span class="fa-chevron-down">▼</span>
             </div>
             <div class="sub-menu">
                 <div class="sub-item">
-                    <i class="fa-solid fa-box icon"></i>
+                    <span class="icon">📁</span>
                     <span class="lang-text">
                         <span class="zh">整合包</span>
                         <span class="en">Modpack</span>
                     </span>
                 </div>
                 <div class="sub-item">
-                    <i class="fa-solid fa-puzzle-piece icon"></i>
+                    <span class="icon">🧩</span>
                     <span class="lang-text">
                         <span class="zh">Mod</span>
                         <span class="en">Mod</span>
                     </span>
                 </div>
                 <div class="sub-item">
-                    <i class="fa-solid fa-lightbulb icon"></i>
+                    <span class="icon">💡</span>
                     <span class="lang-text">
                         <span class="zh">光影包</span>
                         <span class="en">Shaders</span>
                     </span>
                 </div>
                 <div class="sub-item">
-                    <i class="fa-solid fa-images icon"></i>
+                    <span class="icon">🖼️</span>
                     <span class="lang-text">
                         <span class="zh">材质包</span>
                         <span class="en">Resource Pack</span>
                     </span>
                 </div>
                 <div class="sub-item">
-                    <i class="fa-solid fa-crosshairs icon"></i>
+                    <span class="icon">🎯</span>
                     <span class="lang-text">
                         <span class="zh">PvP 材质包</span>
                         <span class="en">PvP Pack</span>
@@ -316,24 +315,24 @@
         <div class="menu-wrap">
             <div class="menu-main">
                 <div class="menu-left">
-                    <i class="fa-solid fa-earth-america icon"></i>
+                    <span class="icon">🌍</span>
                     <span class="lang-text">
                         <span class="zh">Terraria</span>
                         <span class="en">Terraria</span>
                     </span>
                 </div>
-                <i class="fa-solid fa-chevron-down"></i>
+                <span class="fa-chevron-down">▼</span>
             </div>
             <div class="sub-menu">
                 <div class="sub-item">
-                    <i class="fa-solid fa-book icon"></i>
+                    <span class="icon">📖</span>
                     <span class="lang-text">
                         <span class="zh">维基</span>
                         <span class="en">Wiki</span>
                     </span>
                 </div>
                 <div class="sub-item">
-                    <i class="fa-solid fa-puzzle-piece icon"></i>
+                    <span class="icon">🧩</span>
                     <span class="lang-text">
                         <span class="zh">模组</span>
                         <span class="en">Mods</span>
@@ -346,24 +345,24 @@
         <div class="menu-wrap">
             <div class="menu-main">
                 <div class="menu-left">
-                    <i class="fa-solid fa-link icon"></i>
+                    <span class="icon">🔗</span>
                     <span class="lang-text">
                         <span class="zh">联机</span>
                         <span class="en">Multiplayer</span>
                     </span>
                 </div>
-                <i class="fa-solid fa-chevron-down"></i>
+                <span class="fa-chevron-down">▼</span>
             </div>
             <div class="sub-menu">
                 <div class="sub-item" onclick="copyMc(this)">
-                    <i class="fa-solid fa-cube icon"></i>
+                    <span class="icon">📦</span>
                     <span class="lang-text">
                         <span class="zh">Minecraft (点击复制)</span>
                         <span class="en">Minecraft (Click to Copy)</span>
                     </span>
                 </div>
                 <div class="sub-item" onclick="copyTr(this)">
-                    <i class="fa-solid fa-earth-america icon"></i>
+                    <span class="icon">🌍</span>
                     <span class="lang-text">
                         <span class="zh">Terraria (点击复制)</span>
                         <span class="en">Terraria (Click to Copy)</span>
@@ -377,12 +376,9 @@
     <script>
         // 深浅色切换
         const themeBtn = document.getElementById('themeBtn');
-        const icon = themeBtn.querySelector('i');
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark');
-            icon.className = document.body.classList.contains('dark') 
-                ? 'fa-solid fa-sun' 
-                : 'fa-solid fa-moon';
+            themeBtn.innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
         });
 
         // 菜单展开
